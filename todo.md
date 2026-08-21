@@ -1,0 +1,138 @@
+# Project TODO
+
+- [x] Record revised requirements: tRPC protectedProcedure RBAC, JWT/bcrypt auth, exact enums and error codes, Prisma/PostgreSQL schema, transactional deadline history, seeded demo accounts, protected routing, 3D brutalist UI, and documentation.
+- [x] Inspect and preserve suitable scaffold components and existing auth/runtime boundaries.
+- [x] Replace the starter database layer with Prisma PostgreSQL models and relationships for User, Project, Task, Comment, DeadlineHistory, and Activity.
+- [x] Add Prisma migration workflow, database environment validation, and safe environment template documentation (`env-template.txt`; platform-managed `.env.example` mutation is restricted).
+- [x] Add deterministic seed/demo data for Admin and Team Member accounts, projects, tasks, comments, activities, and deadline history.
+- [x] Implement JWT authentication foundation with bcrypt password hashing, login, logout, and `/me` procedures.
+- [x] Implement tRPC protectedProcedure and Admin/Team Member role middleware.
+- [x] Implement typed validation schemas and exact API error codes: VALIDATION_ERROR, UNAUTHORIZED, FORBIDDEN, NOT_FOUND, CONFLICT.
+- [x] Implement project services and Admin project procedures: create, view, edit, archive, and derived progress.
+- [x] Implement task services and Admin task procedures: create, assign, priority, deadline, all-task view.
+- [x] Implement Team Member task scope, status updates, comments/progress updates, and activity records.
+- [x] Implement transactional append-only DeadlineHistory updates with exact columns previousDeadline, newDeadline, changedBy, changedAt.
+- [x] Implement frontend API service/hooks through tRPC, protected routing, role-aware navigation, and loading/error states.
+- [x] Implement premium 3D brutalist design system, architectural scene, scroll-driven camera movement, and reduced-motion fallback.
+- [x] Implement Admin and Team Member pages for the required workflows.
+- [x] Add API documentation, ER diagram, README setup/seed/demo walkthrough, and security notes.
+- [x] Add/update Vitest tests for validation, authentication, RBAC, progress calculation, and deadline-history transaction behavior.
+- [x] Run type checks, tests, build, database migration/seed, API verification, and browser verification; fix all discovered issues.
+- [x] Read todo.md, mark all completed items, save the final checkpoint, and deliver the project version.
+- [x] Recover the interrupted environment configuration/documentation step through managed secrets and a reviewed placeholder environment template.
+- [x] Finish API/README/ER documentation and complete final verification before checkpoint delivery.
+- [x] Implement reactive scroll-driven camera movement with a scroll listener or scene hook and verify reduced-motion fallback.
+- [x] Add complete Admin workflow forms for project edit/archive and task create/edit/assign/priority/deadline management.
+- [x] Add Vitest coverage for RBAC, validation error mapping, derived project progress, and transactional deadline-history behavior.
+- [x] Audit current authentication persistence, JWT/session handling, protected frontend routes, backend middleware, role procedures, error mapping, and demo accounts.
+- [x] Harden authentication persistence, logout behavior, backend authentication middleware, role authorization, and 401/403/404/400/500 response semantics.
+- [x] Verify all protected frontend routes and role-scoped workflows for ADMIN and TEAM_MEMBER.
+- [x] Add comprehensive automated tests for login, logout, persistence, password hashing, JWT failure, both roles, unauthorized access, forbidden access, not-found, validation, and server-error paths.
+- [x] Run full authentication/RBAC verification, fix regressions, read todo.md, save checkpoint, and deliver.
+- [x] Fix and verify logout end-to-end so the session cookie clears, auth cache invalidates, and protected routes redirect to `/login`.
+- [x] Add automated tests for logout, invalid/tampered JWT rejection, and session persistence across authenticated requests.
+- [x] Add and verify a deterministic server-error handling path and automated test for unexpected backend failures.
+- [x] Re-run browser verification for both ADMIN and TEAM_MEMBER, including protected redirects, forbidden operations, and successful logout.
+- [x] Add a test-only deterministic failing backend procedure/service path and assert unexpected exceptions surface as 500/Internal Server Error semantics.
+- [x] Re-run browser verification for ADMIN after the logout fix, including Admin controls, logout, and redirect to `/login`.
+- [x] Verify TEAM_MEMBER forbidden access against an Admin-only backend operation, not only an Admin-only frontend route.
+- [x] Add an explicit TEAM_MEMBER call to an Admin-only backend procedure and assert FORBIDDEN/403, then re-read todo.md and checkpoint.
+- [x] Audit current project/task schema, procedures, frontend routes, and components against the new project and task management requirements.
+- [x] Extend project fields and status contracts to include dates and PLANNING/ACTIVE/ON_HOLD/COMPLETED while preserving relational integrity.
+- [x] Implement Admin project CRUD, project list/detail, progress, search, filters, validation, and deletion behavior.
+- [x] Implement Admin task CRUD, assignment, priority, deadline, status, task table/detail, filters, search, and validation.
+- [x] Add loading, empty, error, and success-notification states across project/task workflows.
+- [x] Ensure all production data is backend/API sourced and add/update automated tests for project/task management.
+- [x] Run database, API, type, build, and browser verification; read todo.md, save checkpoint, and deliver.
+- [x] Update the legacy progress unit test from DONE to the requested COMPLETED status and re-run the full suite.
+- [x] Replace local success messages with real success/error toast notifications for project and task create/update/delete workflows.
+- [x] Add focused automated project/task management tests for CRUD contracts, detail retrieval, search/filter schemas, assignment, and deletion/not-found paths.
+- [x] Re-run verification and save a new checkpoint after the project/task management changes are complete.
+- [x] Add task-create error toast and task-delete success/error toast handling, then verify notification behavior in the browser.
+- [x] Expand project/task tests for successful detail retrieval, assignment behavior, successful CRUD/deletion paths, and procedure-level filter behavior.
+- [x] Save the final project/task management checkpoint only after all verification passes and todo.md is accurate.
+- [x] Trigger task-create-error and task-delete success/error paths in the browser, or document why destructive success cannot be executed without confirmation, and verify available notifications.
+- [x] Extend project/task tests with actual router-level filter assertions and a successful project deletion procedure test using a temporary fixture.
+- [x] Save a new checkpoint after the final verified project/task management changes, then mark the checkpoint item accurately.
+- [x] Extract task-create/delete toast handlers into a testable frontend utility and add non-destructive Vitest coverage for success and error notifications.
+- [x] Re-read todo.md and save a checkpoint after the notification evidence is complete.
+- [x] Move or duplicate notification-handler coverage into the configured server Vitest test path and verify it is discovered and executed.
+- [x] Save a new checkpoint after the verified notification test and final project/task changes.
+- [x] Audit the current DeadlineHistory schema, deadline update service, router, validators, authorization, and task-detail UI.
+- [x] Confirm the database model, migration, indexes, optional reason field, and append-only relationship are complete and synchronized.
+- [x] Implement transactional deadline change detection that records history only when an existing deadline actually changes.
+- [x] Add authorized and validated deadline-history API access with typed error handling.
+- [x] Add chronological deadline-history timeline UI to task detail with evaluator-friendly labels and empty states.
+- [x] Add tests for changed deadlines, unchanged deadlines, ordering, permissions, validation, and not-found/error cases.
+- [x] Run migration, seed compatibility, tests, type/build checks, browser verification, read todo.md, save checkpoint, and deliver.
+- [x] Fix the deadline-history integration test timeout without weakening its assertions, then re-run all tests, type checks, and the production build.
+- [x] Add explicit deadline-history endpoint tests for invalid input, missing task/not-found, unauthorized/forbidden access, and error responses.
+- [x] Save a new checkpoint after the deadline-history changes and confirm the version contains the reason field, chronological timeline, and updated tests.
+- [x] Fix the 3D scene crash caused by the unavailable potsdamer_platz_1k.hdr environment asset, add a local/resilient lighting fallback, and verify /app.
+- [x] Build the Admin Dashboard command-center shell with premium brutalist grid, concrete palette, strong borders, technical labels, and responsive layout.
+- [x] Add database-backed Admin Dashboard statistics for projects, tasks, overdue work, completed work, and team members.
+- [x] Implement Projects, Tasks, Team, Progress, Activity, and Deadline History dashboard sections with real backend data.
+- [x] Add dashboard search, filters, loading/empty/error states, progress visualization, and usable management actions.
+- [x] Add dashboard tests, browser verification, and save a new checkpoint after all checks pass.
+- [x] Make dashboard project/task search and filters query the full backend dataset, or clearly scope and paginate the dashboard lists.
+- [x] Save a new checkpoint after the dashboard changes and confirm it includes the Admin Dashboard UI, backend overview procedure, tests, and browser verification.
+- [x] Save a new checkpoint after the dashboard changes and confirm it includes the Admin Dashboard UI, backend overview procedure, full-dataset server-side dashboard filters, tests, and browser verification.
+- [x] Build a focused Team Member dashboard with MY TASKS, TODAY'S DEADLINES, HIGH PRIORITY, IN PROGRESS, COMPLETED, and OVERDUE sections.
+- [x] Add scoped Team Member dashboard data aggregates that expose only assigned-task information.
+- [x] Implement Team Member status updates, comments/progress updates, deadlines, priorities, and task-history access without Admin controls.
+- [x] Add Team Member authorization tests, responsive browser verification, and save a new checkpoint after all checks pass.
+- [x] Verify the Team Member dashboard through terminal/API and public preview route because browser takeover was unavailable; authenticated API evidence confirms TEAM_MEMBER scope and no current frontend/backend errors.
+- [x] Save a new checkpoint after the Team Member dashboard changes and confirm it includes the scoped dashboard UI, memberDashboard backend procedure, authorization test, and terminal/API verification substitute.
+- [x] Troubleshoot frontend, backend, database, login-route, API, and browser reachability without manual takeover.
+- [x] Verify seeded Team Member authentication and dashboard API behavior with the demo account through terminal/testing tools.
+- [x] Fix any discovered runtime or browser access issue, complete Team Member dashboard validation, and save a new checkpoint.
+- [x] Build the public immersive 3D landing experience with the PROJECT CONTROL SYSTEM hero, brutalist architectural environment, technical readouts, and dashboard/system CTAs.
+- [x] Implement scroll-driven scenes 01–07 with camera, object, typography, statistics, and section transition choreography.
+- [x] Preserve authentication, API, dashboard routes, existing task workflows, performance, and reduced-motion behavior.
+- [x] Add landing regression tests, run the full validation suite, and verify desktop/mobile visual rendering before saving a checkpoint.
+- [x] Add explicit scroll-linked UI, typography, and statistics reveal behavior to the landing scenes.
+- [x] Add landing-specific automated regression coverage for the public root route and protected-route preservation.
+- [x] Add an architectural control-terminal transition for ENTER DASHBOARD using camera, scale, opacity, typography, and UI reveal motion.
+- [x] Route the transition into the real authenticated dashboard without fake dashboard content or unnecessary reloads.
+- [x] Preserve direct `/app`, task, project, and login routes plus reduced-motion and unauthenticated behavior.
+- [x] Add transition regression coverage, run tests/build/browser verification, and save a checkpoint.
+- [x] Verify direct `/login` and `/app/projects` access after the landing transition changes.
+- [x] Verify the actual ENTER DASHBOARD click flow reaches `/login` or `/app` through the in-app handoff without a full-page reload.
+- [x] Save a new checkpoint after transition verification is complete.
+- [x] Audit and refine the shared visual system for typography, spacing, grid, navigation, sidebars, controls, cards, tables, forms, overlay primitives, and responsive behavior.
+- [x] Refine Admin and Team Member dashboards, project/task detail pages, activity/deadline timelines, register/progress visuals, and the reviewed loading/empty/error/success states without changing functionality.
+- [x] Add UI/UX regression coverage and verify the refined application at desktop and mobile breakpoints.
+- [x] Save a new UI/UX refinement checkpoint after tests and visual verification pass.
+- [x] Audit authentication, authorization, project/task CRUD, deadline history, comments, search, filters, progress, activity, database, API, frontend, responsive, 3D, performance, accessibility, and security behavior.
+- [x] Fix every reproducible QA/security defect and add regression coverage for each repaired behavior.
+- [x] Rerun the complete suite, API/browser checks, performance/accessibility review, production build, and save a QA-verified checkpoint.
+- [x] Correct API CONFLICT errors to serialize as HTTP 409 instead of the current 500 fallback.
+- [x] Harden the Express boundary with safe security headers, bounded request bodies, and origin protection for cookie-authenticated mutations.
+- [x] Prevent insecure predictable JWT/database environment fallbacks outside production and add regression coverage for environment validation.
+- [x] Keep Team Member task reads consistent by excluding tasks belonging to archived projects.
+- [x] Add a Content-Security-Policy frame-ancestors fallback because the live preview does not expose the configured X-Frame-Options header consistently.
+- [x] Reduce the production bundle warning by splitting React, Three.js, and UI/vendor code into stable chunks without changing runtime behavior.
+- [x] Update landing route regression coverage to accept the lazy-loaded root route while still asserting direct protected-route preservation.
+- [x] Add focused regression coverage for Team Member visibility of tasks from archived projects.
+- [x] Document the remaining Three.js vendor chunk warning and verify landing lazy-loading keeps it out of the authenticated initial bundle.
+- [x] Save a new QA/security checkpoint after the final regression and build verification.
+- [x] Audit repository structure, current documentation, generated artifacts, ignored files, and secret exposure before submission.
+- [x] Create a complete README covering the assignment’s required sections, with setup, seed, testing, deployment, demo access, screenshots, and future improvements.
+- [x] Create API documentation, database documentation, ER diagram, safe `env-template.txt`, and submission guidance without committing secrets; the managed workspace restricts direct `.env.example` mutation.
+- [x] Run secret scans, tests, TypeScript, production build, and repository-cleanliness checks; fix all submission blockers.
+- [x] Save the submission-ready checkpoint and deliver the repository version for GitHub upload.
+- [x] Diagnose and fix the blank project preview without changing authenticated route behavior.
+- [x] Further code-split the Three.js landing components and verify the production chunk output.
+- [x] Add accessible Copy Credentials controls for the seeded Admin and Team Member demo accounts.
+- [x] Run affected-route tests, responsive/browser checks, production build, and save a corrected checkpoint.
+- [x] Add regression coverage for login Copy Credentials controls and split landing-route boundaries.
+- [x] Save a new checkpoint after the blank-preview fix, Three.js chunk splitting, login Copy Credentials controls, updated UI regression coverage, passing 41-test suite, and `/` + `/login` screenshot verification.
+- [x] Diagnose and fix the current preview-opening failure, verify live route health and runtime logs, and save a corrected checkpoint if code changes are needed.
+- [x] Fix the blank embedded Management UI preview shown in the user screenshot, verify frame/proxy compatibility, and save a corrected checkpoint.
+- [x] Resolve the still-blank Management UI Preview panel by checking preview-session/proxy compatibility beyond the application frame policy.
+- [x] Perform a comprehensive end-to-end diagnosis of the blank embedded Management UI Preview and fix the true root cause, including preview metadata, server lifecycle, iframe policy, asset loading, and runtime behavior.
+- [x] Fix the large embedded Management UI Preview canvas that remains blank while the thumbnail and external preview render correctly.
+- [x] Re-verify the current working website from a fresh project session and clearly re-deliver the live preview URL and latest checkpoint.
+- [x] Add a backend-connected drag-and-drop Kanban board view for task status management.
+- [x] Add a persistent dark-mode toggle to the navigation bar and apply it across the application.
+- [x] Build the Concrete → Data architectural morphism with heavy Three.js scroll transitions while preserving direct dashboard access and reduced-motion behavior.

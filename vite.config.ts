@@ -177,10 +177,9 @@ export default defineConfig({
           if (["/react/", "/react-dom/", "/scheduler/", "/wouter/"].some((pkg) => normalizedId.includes(`/node_modules${pkg}`))) {
             return "framework";
           }
-          if (normalizedId.includes("/node_modules/three/")) return "three-core";
-          if (normalizedId.includes("/node_modules/@react-three/fiber/")) return "three-fiber";
-          if (normalizedId.includes("/node_modules/@react-three/drei/")) return "three-drei";
-          if (normalizedId.includes("/node_modules/postprocessing/")) return "three-postprocessing";
+                   if (["/three/", "/@react-three/fiber/", "/@react-three/drei/", "/postprocessing/"].some((pkg) => normalizedId.includes(`/node_modules${pkg}`))) {
+            return "three-core";
+          }
           if (["/recharts/", "/lucide-react/", "/@radix-ui/"].some((pkg) => normalizedId.includes(`/node_modules${pkg}`))) {
             return "ui-vendor";
           }

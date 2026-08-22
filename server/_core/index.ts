@@ -65,8 +65,9 @@ async function startServer() {
     }
     next();
   });
-  app.use(express.json({ limit: "2mb" }));
+    app.use(express.json({ limit: "2mb" }));
   app.use(express.urlencoded({ limit: "2mb", extended: true }));
+  app.get("/healthz", (_req, res) => { res.status(200).send("ok"); });
   registerStorageProxy(app);
   registerOAuthRoutes(app);
   // tRPC API

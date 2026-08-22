@@ -1,12 +1,12 @@
-# !\[React](https://img.shields.io/badge/React-19-149ECA?logo=react\&logoColor=white)
+# !\[React](https://img.shields.io/badge/React-19-149ECA?logo=react&logoColor=white)
 
-# !\[TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript\&logoColor=white)
+# !\[TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)
 
-# !\[Node.js](https://img.shields.io/badge/Node.js-20+-339933?logo=nodedotjs\&logoColor=white)
+# !\[Node.js](https://img.shields.io/badge/Node.js-20+-339933?logo=nodedotjs&logoColor=white)
 
-# !\[Prisma](https://img.shields.io/badge/Prisma-6.19-2D3748?logo=prisma\&logoColor=white)
+# !\[Prisma](https://img.shields.io/badge/Prisma-6.19-2D3748?logo=prisma&logoColor=white)
 
-# !\[tRPC](https://img.shields.io/badge/tRPC-11-2596BE?logo=trpc\&logoColor=white)
+# !\[tRPC](https://img.shields.io/badge/tRPC-11-2596BE?logo=trpc&logoColor=white)
 
 # !\[Tests](https://img.shields.io/badge/tests-43%20passing-brightgreen)
 
@@ -15,12 +15,12 @@
 # 
 
 \*\*\[Live Demo](https://team-project-manager-5exk.onrender.com)\*\* · \*\*\[API Docs](docs/API.md)\*\* · \*\*\[Database Schema](docs/DATABASE.md)\*\*
-Atlas Office — Team Project \& Task Manager
+Atlas Office — Team Project & Task Manager
 ===
 
-Atlas Office is a production-oriented full-stack Team Project \& Task Management application for coordinating projects, assigning work, tracking progress, and preserving an auditable history of deadline changes. The product combines a functional role-aware application with an editorial brutalist interface and an optional immersive Three.js landing experience.
+Atlas Office is a production-oriented full-stack Team Project & Task Management application for coordinating projects, assigning work, tracking progress, and preserving an auditable history of deadline changes. The product combines a functional role-aware application with an editorial brutalist interface and an optional immersive Three.js landing experience.
 
-> \\\*\\\*Submission note:\\\*\\\* The application is implemented against the managed MySQL-compatible TiDB database supplied by the runtime. The Prisma provider is therefore `mysql`, even though the service boundaries remain portable to another relational database.
+> \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*Submission note:\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\* The application is implemented against the managed MySQL-compatible TiDB database supplied by the runtime. The Prisma provider is therefore `mysql`, even though the service boundaries remain portable to another relational database.
 
 ## 1\. Project overview
 
@@ -37,7 +37,7 @@ Teams often lose delivery context across spreadsheets, chat messages, and changi
 |Capability|Implementation|
 |-|-|
 |Authentication|Email/password login, bcrypt password hashing, JWT session cookies, logout, session persistence, and protected routes.|
-|Authorization|Backend-enforced `ADMIN` and `TEAM\\\_MEMBER` procedures; frontend visibility is not the security boundary.|
+|Authorization|Backend-enforced `ADMIN` and `TEAM\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_MEMBER` procedures; frontend visibility is not the security boundary.|
 |Project management|Admin project creation, editing, archiving, detail views, search, filters, and derived progress.|
 |Task management|Task creation, assignment, priority, status, deadline, search, filters, detail views, and deletion/update workflows.|
 |Deadline audit|Transactional append-only deadline history with previous deadline, new deadline, actor, timestamp, and optional reason.|
@@ -69,7 +69,7 @@ A Team Member can access the focused workbench for assigned tasks only. The dash
 
 ## 7\. Architecture
 
-The application is a typed tRPC monorepo-style web project. The browser consumes the router through `client/src/lib/trpc.ts`; the server constructs request context in `server/\\\_core/context.ts`, applies protected and role middleware in `server/\\\_core/trpc.ts`, and composes feature procedures in `server/routers.ts`. Prisma access is isolated in `server/db.ts` and authentication helpers are isolated under `server/auth/`.
+The application is a typed tRPC monorepo-style web project. The browser consumes the router through `client/src/lib/trpc.ts`; the server constructs request context in `server/\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_core/context.ts`, applies protected and role middleware in `server/\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_core/trpc.ts`, and composes feature procedures in `server/routers.ts`. Prisma access is isolated in `server/db.ts` and authentication helpers are isolated under `server/auth/`.
 
 The public landing route is lazy-loaded so the Three.js scene is not part of the authenticated application’s initial JavaScript route. The authenticated shell is shared by the Admin and Team Member pages, while server procedures apply the final authorization decision.
 
@@ -84,13 +84,13 @@ client/
     lib/              tRPC client and shared frontend utilities
     index.css         Global editorial/brutalist design system
 server/
-  \\\_core/              Express, tRPC, context, cookies, runtime integration
+  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_core/              Express, tRPC, context, cookies, runtime integration
   auth/               Password hashing, JWT signing, session helpers
   config/             Environment validation
   validators/         Shared Zod input contracts
   db.ts               Prisma client and query helpers
   routers.ts          Typed API procedures
-  \\\*.test.ts           Vitest regression and security coverage
+  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*.test.ts           Vitest regression and security coverage
 prisma/
   schema.prisma       Authoritative relational schema
   seed.ts              Reproducible demo data
@@ -112,11 +112,11 @@ The complete diagram is available in [`docs/ER-DIAGRAM.md`](./docs/ER-DIAGRAM.md
 
 Login is performed through the public `auth.login` procedure. Passwords are compared against bcrypt hashes, and successful authentication creates a signed JWT session cookie with `HttpOnly`, `SameSite=Lax`, `Path=/`, and production-secure behavior. The request context accepts the session cookie and the supported bearer-token form. `auth.me` returns only the public user projection; password hashes are never exposed.
 
-Production refuses to start without an explicit `JWT\\\_SECRET`. Development and test environments may use an ephemeral in-memory secret when no secret is supplied, but no predictable fallback is used.
+Production refuses to start without an explicit `JWT\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_SECRET`. Development and test environments may use an ephemeral in-memory secret when no secret is supplied, but no predictable fallback is used.
 
 ## 11\. Role-based authorization
 
-The server exposes protected procedure layers for authentication and role checks. `ADMIN` operations include project/task management and team administration. `TEAM\\\_MEMBER` operations are scoped to the authenticated assignee. Unauthorized requests return `UNAUTHORIZED`, role violations return `FORBIDDEN`, missing resources return `NOT\\\_FOUND`, invalid input returns validation errors, and application conflicts serialize as HTTP 409 at the transport boundary.
+The server exposes protected procedure layers for authentication and role checks. `ADMIN` operations include project/task management and team administration. `TEAM\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_MEMBER` operations are scoped to the authenticated assignee. Unauthorized requests return `UNAUTHORIZED`, role violations return `FORBIDDEN`, missing resources return `NOT\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_FOUND`, invalid input returns validation errors, and application conflicts serialize as HTTP 409 at the transport boundary.
 
 ## 12\. API documentation
 
@@ -135,7 +135,7 @@ pnpm install
 pnpm db:generate
 ```
 
-Configure a MySQL-compatible `DATABASE\\\_URL` and a long random `JWT\\\_SECRET` in `.env`. Apply the schema using either the committed migration workflow or the managed database push workflow:
+Configure a MySQL-compatible `DATABASE\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_URL` and a long random `JWT\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_SECRET` in `.env`. Apply the schema using either the committed migration workflow or the managed database push workflow:
 
 ```bash
 pnpm db:deploy
@@ -177,7 +177,7 @@ The repository includes regression coverage for authentication, logout, session 
 **43 tests across 11 Vitest files**
 18. Deployment
 
-The project is compatible with the managed WebDev hosting environment. Create a checkpoint before publishing and use the platform’s Publish workflow. Provide production `DATABASE\\\_URL`, `JWT\\\_SECRET`, `CLIENT\\\_ORIGIN`, and the required platform/OAuth variables through the hosting environment, never through committed source files. A conventional Node deployment can use `pnpm build` followed by `pnpm start`, provided the runtime supplies the same environment contract and a reachable MySQL-compatible database.
+The project is compatible with the managed WebDev hosting environment. Create a checkpoint before publishing and use the platform’s Publish workflow. Provide production `DATABASE\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_URL`, `JWT\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_SECRET`, `CLIENT\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_ORIGIN`, and the required platform/OAuth variables through the hosting environment, never through committed source files. A conventional Node deployment can use `pnpm build` followed by `pnpm start`, provided the runtime supplies the same environment contract and a reachable MySQL-compatible database.
 
 ## 19\. Demo credentials
 
